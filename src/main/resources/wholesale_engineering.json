@@ -1,0 +1,144 @@
+{
+    "mappings": [
+        {
+            "request": {
+                "method": "GET",
+                "url": "/stub/accounts"
+            },
+            "response": {
+                "status": 200,
+                "headers": {
+                    "Content-Type": "application/json",
+                    "Cache-Control": "no-cache"
+                },
+                "jsonBody": {
+                    "accounts": [
+                        {
+                            "accountNumber": "585309209",
+                            "accountName": "SGSavings726",
+                            "accountType": "Savings",
+                            "balanceDate": "08/11/2018",
+                            "currency": "SGD",
+                            "balance": "84327.51"
+                        },
+                        {
+                            "accountNumber": "798309209",
+                            "accountName": "AUSavings136",
+                            "accountType": "Savings",
+                            "balanceDate": "18/01/2017",
+                            "currency": "AUD",
+                            "balance": "88005.93"
+                        },
+                        {
+                            "accountNumber": "189348563",
+                            "accountName": "SGCurrent456",
+                            "accountType": "Current",
+                            "balanceDate": "08/11/2018",
+                            "currency": "SGD",
+                            "balance": "30801.56"
+                        },
+                        {
+                            "accountNumber": "98766543",
+                            "accountName": "AUCurrent4545",
+                            "accountType": "Current",
+                            "balanceDate": "18/01/2019",
+                            "currency": "AUD",
+                            "balance": "400034.00"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "id": "8c5db8b0-2db4-4ad7-a99f-38c9b00da3f7",
+            "request": {
+                "method": "GET",
+                "urlPathPattern": "/stub/transactions/223-3323-212"
+            },
+            "response": {
+                "status": 200,
+                "headers": {
+                    "Content-Type": "application/json",
+                    "Cache-Control": "no-cache"
+                },
+                "jsonBody": {
+                    "transactions": [
+                        {
+                            "accountNumber": "223-3323-212",
+                            "accountName": "Current Account",
+                            "valueDate": "Jan 12, 2022",
+                            "currency": "AUD",
+                            "debitAmount": "",
+                            "creditAmount": "34567.87",
+                            "debitOrCredit": "Credit",
+                            "transactionNarrative": ""
+                        },
+                        {
+                            "accountNumber": "223-3323-212",
+                            "accountName": "Current Account",
+                            "valueDate": "Jan 12, 2022",
+                            "currency": "AUD",
+                            "debitAmount": "4546.00",
+                            "creditAmount": "",
+                            "debitOrCredit": "Debit",
+                            "transactionNarrative": ""
+                        }
+                    ]
+                }
+            }
+        },
+		{
+            "id": "8c5db8b0-2db4-4ad7-a99f-38c9b00da3f7",
+            "request": {
+                "method": "GET",
+                "urlPathPattern": "/stub/transactions/123-2223-212"
+            },
+            "response": {
+                "status": 200,
+                "headers": {
+                    "Content-Type": "application/json",
+                    "Cache-Control": "no-cache"
+                },
+                "jsonBody": {
+                    "transactions": [
+                        {
+                            "accountNumber": "123-2223-212",
+                            "accountName": "Current Account",
+                            "valueDate": "Jan 12, 2022",
+                            "currency": "SGD",
+                            "debitAmount": "",
+                            "creditAmount": "9540.98",
+                            "debitOrCredit": "Credit",
+                            "transactionNarrative": ""
+                        },
+                        {
+                            "accountNumber": "123-2223-212",
+                            "accountName": "Current Account",
+                            "valueDate": "Jan 12, 2022",
+                            "currency": "SGD",
+                            "debitAmount": "345l.54",
+                            "creditAmount": "",
+                            "debitOrCredit": "Debit",
+                            "transactionNarrative": ""
+                        }
+                    ]
+                }
+            }
+        },
+		{
+            "id": "8c5db8b0-2db4-4ad7-a99f-38c9b00da3f7",
+            "request": {
+                "method": "GET",
+                "urlPathPattern": "/stub/transactions/([a-z1-9]*)"
+            },
+            "response": {
+                "status": 404,
+                "headers": {
+                    "Content-Type": "application/json",
+                    "Cache-Control": "no-cache"
+                },
+                "body": "No Data Found"
+            }
+        }
+    ]
+}
