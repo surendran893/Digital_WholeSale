@@ -2,7 +2,7 @@
 
 * Step1:
   Download wiremock and run the below command  or Use the wiremock jar in the repo. 
-  Place the  json file in mapping folder of wiremock for stubbing.
+  Place the  json file in mapping folder of wiremock for stubbing which is available in resource folder
 * java -jar wiremock-jre8-standalone-2.35.0.jar --port 8081 --verbose
 
 * Run the application and try with given url for the result. All are GET Method.
