@@ -1,7 +1,5 @@
 package com.anz.digital.wholesale.exception;
 
-import com.anz.digital.wholesale.util.AnzLogger;
-import com.anz.digital.wholesale.util.LoggerConstants;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -16,6 +14,9 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+
+import com.anz.digital.wholesale.util.AnzLogger;
+import com.anz.digital.wholesale.util.LoggerConstants;
 
 @RestControllerAdvice
 public class RestControllerErrorAdvice extends ResponseEntityExceptionHandler {
@@ -145,6 +146,20 @@ public class RestControllerErrorAdvice extends ResponseEntityExceptionHandler {
   @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
   public ResponseEntity<Object> handleAllUncaughtException(
       Exception exception, WebRequest request) {
+    logger.error(
+        LoggerConstants.AnzError.ERR,
+        "Unknown error occurred: => {}",
+        exception.getMessage(),
+        exception.getLocalizedMessage());
+    ErrorResponse errorResponse =
+        new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), exception.getMessage());
+    return buildErrorResponse(exception, errorResponse, HttpStatus.INTERNAL_SERVER_ERROR, request);
+  }
+  
+  @ExceptionHandler(TransactionException.class)
+  @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+  public ResponseEntity<Object> handleTransactionException(
+		  TransactionException exception, WebRequest request) {
     logger.error(
         LoggerConstants.AnzError.ERR,
         "Unknown error occurred: => {}",

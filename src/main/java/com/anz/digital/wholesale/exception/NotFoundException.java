@@ -1,23 +1,28 @@
 package com.anz.digital.wholesale.exception;
 
-public class NotFoundException extends RuntimeException {
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
-  private int statusCode;
+@ResponseStatus(value = HttpStatus.NOT_FOUND)
+public class NotFoundException extends Exception{
 
-  public NotFoundException(String message) {
-    super(message);
-  }
-
-  public NotFoundException(String message, Throwable cause) {
-    super(message, cause);
-  }
-
-  public NotFoundException(String message, int statusCode) {
-    super(message);
-    this.statusCode = statusCode;
-  }
-
-  public int getStatusCode() {
-    return statusCode;
-  }
+	private static final long serialVersionUID = 1L;
+	public NotFoundException(String status,String message){
+	    	super(message);
+	    	this.status=status;
+    }
+	public NotFoundException(String message){
+    	super(message);
+}
+	public NotFoundException(){
+    	super();
+}
+	
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	private String status;
 }

@@ -1,13 +1,13 @@
 package com.anz.digital.wholesale.util;
 
-import org.apache.logging.log4j.CloseableThreadContext;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import java.io.InputStream;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.Properties;
+
+import org.apache.logging.log4j.CloseableThreadContext;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class AnzLogger {
 

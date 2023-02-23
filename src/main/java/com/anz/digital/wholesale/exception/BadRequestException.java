@@ -1,8 +1,8 @@
 package com.anz.digital.wholesale.exception;
 
-import lombok.Data;
-
 import java.util.List;
+
+import lombok.Data;
 
 @Data
 public class BadRequestException extends RuntimeException {
