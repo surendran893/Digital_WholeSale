@@ -123,7 +123,7 @@ public class RestControllerErrorAdvice extends ResponseEntityExceptionHandler {
       WebRequest request) {
     ServletWebRequest servletWebRequest = (ServletWebRequest) request;
     logger.info(
-        LoggerConstants.PrexMarker.FLOW,
+        LoggerConstants.AnzMarker.FLOW,
         "{} to {}",
         servletWebRequest.getHttpMethod(),
         servletWebRequest.getRequest().getServletPath());
@@ -146,7 +146,7 @@ public class RestControllerErrorAdvice extends ResponseEntityExceptionHandler {
   public ResponseEntity<Object> handleAllUncaughtException(
       Exception exception, WebRequest request) {
     logger.error(
-        LoggerConstants.PrexError.ERR,
+        LoggerConstants.AnzError.ERR,
         "Unknown error occurred: => {}",
         exception.getMessage(),
         exception.getLocalizedMessage());

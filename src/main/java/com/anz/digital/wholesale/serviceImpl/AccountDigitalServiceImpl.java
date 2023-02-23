@@ -1,7 +1,6 @@
 package com.anz.digital.wholesale.serviceImpl;
 
 import com.anz.digital.wholesale.config.RestApiClient;
-import com.anz.digital.wholesale.exception.NoDataFoundException;
 import com.anz.digital.wholesale.exception.NotFoundException;
 import com.anz.digital.wholesale.exception.TransactionException;
 import com.anz.digital.wholesale.model.AccountResponse;
@@ -15,14 +14,15 @@ import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
 
 import static com.anz.digital.wholesale.util.TransactionErrorCode.DATA_FETCH_ERROR;
-import static com.anz.digital.wholesale.util.TransactionErrorCode.NOT_FOUND;
+import static com.anz.digital.wholesale.util.ApplicationConstants.ACCOUNT_NUM1;
+import static com.anz.digital.wholesale.util.ApplicationConstants.ACCOUNT_NUM2;
 
 @Service
 public class AccountDigitalServiceImpl implements AccountDigitalService {
 
     private static final AnzLogger logger = AnzLogger.getLogger(AccountDigitalServiceImpl.class);
 
-    @Value("${anz.wholesale.wiremock.stub.path:http://localhost:8081}")
+    @Value("${anz.wholesale.wiremock.stub.path}")
     private String baseUrl;
 
     @Autowired
@@ -34,17 +34,17 @@ public class AccountDigitalServiceImpl implements AccountDigitalService {
      */
     @Override
     public AccountResponse getAccountList(String traceId) {
-        logger.info(LoggerConstants.PrexMarker.FLOW, "processing accountList API for traceId " + traceId);
+        logger.info(LoggerConstants.AnzMarker.FLOW, "processing accountList API for traceId " + traceId);
 
         try {
             AccountResponse response = restApiClient.callRestApi(null, AccountResponse.class, HttpMethod.GET, baseUrl + "/stub/accounts");
 
-            logger.info(LoggerConstants.PrexMarker.FLOW, "processing accountList API Completed for traceId " + traceId);
+            logger.info(LoggerConstants.AnzMarker.FLOW, "processing accountList API Completed for traceId " + traceId);
 
             return response;
 
         } catch (Exception e) {
-            logger.error(LoggerConstants.PrexError.ERR, "Error during fetching account list ", e.getMessage());
+            logger.error(LoggerConstants.AnzError.ERR, "Error during fetching account list ", e.getMessage());
             throw new TransactionException(DATA_FETCH_ERROR, e);
         }
 
@@ -56,28 +56,28 @@ public class AccountDigitalServiceImpl implements AccountDigitalService {
      * @return TransactionResponse List of Transaction for the particular account to be populated.
      */
     @Override
-    public TransactionResponse getTransactionList(String accountNumber, String traceId) throws NotFoundException {
+    public TransactionResponse getTransactionList(String accountNumber, String traceId) {
 
-        logger.info(LoggerConstants.PrexMarker.FLOW, "processing account transaction List API for traceId " + traceId);
+        logger.info(LoggerConstants.AnzMarker.FLOW, "processing account transaction List API for traceId " + traceId);
 
 
-        if(accountNumber.equalsIgnoreCase("123-2223-212") || accountNumber.equalsIgnoreCase("223-3323-212")){
+        if(accountNumber.equalsIgnoreCase(ACCOUNT_NUM1) || accountNumber.equalsIgnoreCase(ACCOUNT_NUM2)){
 
             try {
                 TransactionResponse response =
                         restApiClient.callRestApi(null, TransactionResponse.class, HttpMethod.GET, baseUrl + "/stub/transactions/" + accountNumber);
 
-                logger.info(LoggerConstants.PrexMarker.FLOW, "processing account transaction List API Completed for traceId " + traceId);
+                logger.info(LoggerConstants.AnzMarker.FLOW, "processing account transaction List API Completed for traceId " + traceId);
 
                 return response;
 
             } catch (Exception e) {
-                logger.error(LoggerConstants.PrexError.ERR, "Error during fetching transaction list ", e.getMessage());
+                logger.error(LoggerConstants.AnzError.ERR, "Error during fetching transaction list ", e.getMessage());
                 throw new TransactionException(DATA_FETCH_ERROR, e);
             }
 
         }else{
-            logger.error(LoggerConstants.PrexError.ERR, "No Data Found for the given account Number "+accountNumber);
+            logger.error(LoggerConstants.AnzError.ERR, "No Data Found for the given account Number "+accountNumber);
             throw new NotFoundException("No Data Found");
         }
 

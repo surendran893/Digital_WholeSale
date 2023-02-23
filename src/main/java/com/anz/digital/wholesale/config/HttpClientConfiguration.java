@@ -26,13 +26,13 @@ public class HttpClientConfiguration {
                 new HttpComponentsClientHttpRequestFactory();
         factory.setConnectionRequestTimeout(connectionTimeOut);
         logger.debug(
-                LoggerConstants.PrexMarker.FLOW,
+                LoggerConstants.AnzMarker.FLOW,
                 "Connection Timeout value set for http request: {}",
                 connectionTimeOut);
 
         factory.setReadTimeout(readTimeOut);
         logger.debug(
-                LoggerConstants.PrexMarker.FLOW,
+                LoggerConstants.AnzMarker.FLOW,
                 "Connection Read Timeout value set for http request: {}",
                 readTimeOut);
 

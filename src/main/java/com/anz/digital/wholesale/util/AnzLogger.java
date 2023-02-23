@@ -34,66 +34,66 @@ public class AnzLogger {
         return new AnzLogger(LogManager.getLogger(clazz.getName()));
     }
 
-    public void trace(LoggerConstants.PrexMarker marker, String message, Object... params) {
+    public void trace(LoggerConstants.AnzMarker marker, String message, Object... params) {
         log.trace(marker.getValue(), message, params);
     }
 
-    public void trace(LoggerConstants.PrexMarker marker, String message) {
+    public void trace(LoggerConstants.AnzMarker marker, String message) {
         log.trace(marker.getValue(), message);
     }
 
-    public void debug(LoggerConstants.PrexMarker marker, String message, Object... params) {
+    public void debug(LoggerConstants.AnzMarker marker, String message, Object... params) {
         log.debug(marker.getValue(), message, params);
     }
 
-    public void debug(LoggerConstants.PrexMarker marker, String message) {
+    public void debug(LoggerConstants.AnzMarker marker, String message) {
         log.debug(marker.getValue(), message);
     }
 
     public void info(
-            LoggerConstants.PrexMarker marker, Map<String, String> localMap, String message) {
+            LoggerConstants.AnzMarker marker, Map<String, String> localMap, String message) {
         try (final CloseableThreadContext.Instance ctc = CloseableThreadContext.putAll(localMap)) {
             log.info(marker.getValue(), message);
         }
     }
 
-    public void info(LoggerConstants.PrexMarker marker, String message, Object... params) {
+    public void info(LoggerConstants.AnzMarker marker, String message, Object... params) {
         log.info(marker.getValue(), message, params);
     }
 
-    public void info(LoggerConstants.PrexMarker marker, Map<String, String> localMap, String message, Object... params) {
+    public void info(LoggerConstants.AnzMarker marker, Map<String, String> localMap, String message, Object... params) {
         try (final CloseableThreadContext.Instance ctc = CloseableThreadContext.putAll(localMap)) {
             log.info(marker.getValue(), message, params);
         }
     }
 
-    public void info(LoggerConstants.PrexMarker marker, String message) {
+    public void info(LoggerConstants.AnzMarker marker, String message) {
         log.info(marker.getValue(), message);
     }
 
-    public void warn(LoggerConstants.PrexMarker marker, String message, Object... params) {
+    public void warn(LoggerConstants.AnzMarker marker, String message, Object... params) {
         log.warn(marker.getValue(), message, params);
     }
 
-    public void warn(LoggerConstants.PrexMarker marker, String message) {
+    public void warn(LoggerConstants.AnzMarker marker, String message) {
         log.warn(marker.getValue(), message);
     }
 
-    public void error(LoggerConstants.PrexError error, String message, Object... params) {
+    public void error(LoggerConstants.AnzError error, String message, Object... params) {
         try (final CloseableThreadContext.Instance ctc =
                      CloseableThreadContext.put(LoggerConstants.LogKey.PREXERROR.getValue(), error.name())) {
-            log.error(LoggerConstants.PrexMarker.EXCEPTION.getValue(), message, params);
+            log.error(LoggerConstants.AnzMarker.EXCEPTION.getValue(), message, params);
         }
     }
 
-    public void error(LoggerConstants.PrexError error, String message) {
+    public void error(LoggerConstants.AnzError error, String message) {
         try (final CloseableThreadContext.Instance ctc =
                      CloseableThreadContext.put(LoggerConstants.LogKey.PREXERROR.getValue(), error.name())) {
-            log.error(LoggerConstants.PrexMarker.EXCEPTION.getValue(), message);
+            log.error(LoggerConstants.AnzMarker.EXCEPTION.getValue(), message);
         }
     }
 
-    public void catching(LoggerConstants.PrexError error, Throwable t, Map<String, String> localMap) {
+    public void catching(LoggerConstants.AnzError error, Throwable t, Map<String, String> localMap) {
         try (final CloseableThreadContext.Instance ctc =
                      CloseableThreadContext.put(LoggerConstants.LogKey.PREXERROR.getValue(), error.name())
                              .putAll(localMap)) {
@@ -104,7 +104,7 @@ public class AnzLogger {
         }
     }
 
-    public void catching(LoggerConstants.PrexError error, Throwable t) {
+    public void catching(LoggerConstants.AnzError error, Throwable t) {
         try (final CloseableThreadContext.Instance ctc =
                      CloseableThreadContext.put(LoggerConstants.LogKey.PREXERROR.getValue(), error.name())) {
             if (t.getStackTrace().length > maxStackTraceSize) {
@@ -121,7 +121,7 @@ public class AnzLogger {
         log.catching(t);
     }
 
-    public void throwing(LoggerConstants.PrexError error, Throwable t, Map<String, String> localMap) {
+    public void throwing(LoggerConstants.AnzError error, Throwable t, Map<String, String> localMap) {
         try (final CloseableThreadContext.Instance ctc =
                      CloseableThreadContext.put(LoggerConstants.LogKey.PREXERROR.getValue(), error.name())
                              .putAll(localMap)) {
@@ -132,7 +132,7 @@ public class AnzLogger {
         }
     }
 
-    public void throwing(LoggerConstants.PrexError error, Throwable t) {
+    public void throwing(LoggerConstants.AnzError error, Throwable t) {
         try (final CloseableThreadContext.Instance ctc =
                      CloseableThreadContext.put(LoggerConstants.LogKey.PREXERROR.getValue(), error.name())) {
             if (t.getStackTrace().length > maxStackTraceSize) {

@@ -31,7 +31,7 @@ public class LoggerConstants {
         }
     }
 
-    public enum PrexError {
+    public enum AnzError {
         ERR_IO_TIMEOUT_Q_IBMMQ("ERR_IO_TIMEOUT_Q_IBMMQ"),
         ERR_IO_TIMEOUT_Q_SOLACE("ERR_IO_TIMEOUT_Q_SOLACE"),
         ERR_IO_TIMEOUT_DS_MONGO("ERR_IO_TIMEOUT_DS_MONGO"),
@@ -63,12 +63,12 @@ public class LoggerConstants {
 
         private final String v;
 
-        PrexError(String v) {
+        AnzError(String v) {
             this.v = v;
         }
 
-        public static PrexError from(String text) {
-            for (PrexError e : PrexError.values()) {
+        public static AnzError from(String text) {
+            for (AnzError e : AnzError.values()) {
                 if (e.v.equalsIgnoreCase(text)) {
                     return e;
                 }
@@ -82,19 +82,19 @@ public class LoggerConstants {
     }
 
 
-    public enum PrexMarker {
+    public enum AnzMarker {
         FLOW("FLOW"),
         EXCEPTION("EXCEPTION"),
         OTHER("OTHER");
 
         private final Marker v;
 
-        PrexMarker(String v) {
+        AnzMarker(String v) {
             this.v = MarkerManager.getMarker(v);
         }
 
-        public static PrexMarker from(String text) {
-            for (PrexMarker e : PrexMarker.values()) {
+        public static AnzMarker from(String text) {
+            for (AnzMarker e : AnzMarker.values()) {
                 if (e.v.getName().equalsIgnoreCase(text)) {
                     return e;
                 }

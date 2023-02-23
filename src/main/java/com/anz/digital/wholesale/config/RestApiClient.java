@@ -53,7 +53,7 @@ public class RestApiClient {
         threadContextMDCMap.put(HTTP_URI, uri);
         threadContextMDCMap.put(HTTP_REQUEST, requestEntity.toString());
 
-        logger.info(LoggerConstants.PrexMarker.FLOW, "Http Information is {} ", threadContextMDCMap);
+        logger.info(LoggerConstants.AnzMarker.FLOW, "Http Information is {} ", threadContextMDCMap);
 
         final ResponseEntity<T> responseEntity;
 
@@ -61,12 +61,12 @@ public class RestApiClient {
 
             responseEntity = restTemplate.exchange(uri, httpMethod, requestEntity, responseType);
 
-            logger.debug(LoggerConstants.PrexMarker.FLOW, "responseEntity {}", responseEntity.toString());
-            logger.info(LoggerConstants.PrexMarker.FLOW, "responseEntityBody {}", responseEntity.getBody());
+            logger.debug(LoggerConstants.AnzMarker.FLOW, "responseEntity {}", responseEntity.toString());
+            logger.info(LoggerConstants.AnzMarker.FLOW, "responseEntityBody {}", responseEntity.getBody());
 
         } catch (final HttpClientErrorException | HttpServerErrorException error) {
             logger.error(
-                    LoggerConstants.PrexError.ERR,
+                    LoggerConstants.AnzError.ERR,
                     "Failed to call API  "
                             + error.getMessage()
                             + "(responseBody is: "
@@ -79,7 +79,7 @@ public class RestApiClient {
             throw new ApiCallException(
                     error.getResponseBodyAsString(), error.getStatusCode().value(), uri, "");
         } catch (Exception error) {
-            logger.error(LoggerConstants.PrexError.ERR, "Failed to call API  " + error.getMessage(), error);
+            logger.error(LoggerConstants.AnzError.ERR, "Failed to call API  " + error.getMessage(), error);
             throw new TransactionException(TransactionErrorCode.GENERIC_ERROR, error);
         }
         validateEntity(responseEntity, uri);
@@ -108,8 +108,8 @@ public class RestApiClient {
     public <T> T mapObjectData(final String request, final Class<T> responseType)
             throws JsonProcessingException {
 
-        logger.debug(LoggerConstants.PrexMarker.FLOW, "request {}", request);
-        logger.debug(LoggerConstants.PrexMarker.FLOW, "responseType is {}", responseType);
+        logger.debug(LoggerConstants.AnzMarker.FLOW, "request {}", request);
+        logger.debug(LoggerConstants.AnzMarker.FLOW, "responseType is {}", responseType);
 
         return mapper.readValue(request, responseType);
     }
