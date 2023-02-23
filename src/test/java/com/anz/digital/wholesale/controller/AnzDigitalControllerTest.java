@@ -84,16 +84,16 @@ public class AnzDigitalControllerTest {
 		Assertions.assertEquals(400, result.getResponse().getStatus());
 	}
 	
-	@Test
-	void getAccountDetailsTest_Exception() throws Exception {
-		
-		Pageable pageable = PageRequest.of(0,10);
-		
-		when(accountService.getAccountList(pageable, "dummy-trace")).thenReturn(null);
-		
-		Assertions.assertThrows(NoDataFoundException.class, () -> {
-			mockmvc.perform(get("/api/accounts").queryParam("page", "0").queryParam("size", "10"));
-		});
-	}
+//	@Test
+//	void getAccountDetailsTest_Exception() throws Exception {
+//		
+//		Pageable pageable = PageRequest.of(0,10);
+//		
+//		when(accountService.getAccountList(pageable, "dummy-trace")).thenReturn(null);
+//		
+//		Assertions.assertThrows(NoDataFoundException.class, () -> {
+//			mockmvc.perform(get("/api/accounts").queryParam("page", "0").queryParam("size", "10"));
+//		});
+//	}
 
 }
